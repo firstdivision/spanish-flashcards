@@ -1,33 +1,66 @@
-# React + TypeScript + Vite
+# Spanish Flashcards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based language learning game that tests Spanish vocabulary knowledge using spaced repetition.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Matching Game**: Click English words and match them to Spanish translations
+- **Spaced Repetition System**: Words you know well are tested less frequently; words you struggle with appear more often
+- **Progressive Difficulty**: Start with easy words and unlock harder ones as you progress
+- **Mobile Optimized**: Fully responsive design that works great on both mobile and desktop
+- **Persistent Progress**: Your learning stats are saved locally in your browser
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18+ and npm
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+npm install
+```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
+### Development
+
+```bash
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Deploy to GitHub Pages
+
+This project is automatically deployed to GitHub Pages on every push to the `main` branch via GitHub Actions.
+
+Visit the deployed app: [https://andrew.github.io/spanish-flashcards/](https://andrew.github.io/spanish-flashcards/)
+
+To set up GitHub Pages for your own fork:
+1. Go to your repository Settings → Pages
+2. Set the source to "GitHub Actions"
+3. The workflow will automatically deploy on push to main
+
+## How to Play
+
+1. Select an English word on the left
+2. Click the Spanish word you think is the correct translation
+3. Correct matches will disappear
+4. Continue until all 5 pairs are matched
+5. Click "Next Round" to play again with different words
+
+## Tech Stack
+
+- **React 19** - UI framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool and dev server
+- **CSS3** - Responsive styling
       tseslint.configs.stylisticTypeChecked,
 
       // Other configs...
