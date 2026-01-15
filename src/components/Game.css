@@ -5,7 +5,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0d1b3d 0%, #1a237e 100%);
 }
 
 .game-header {
@@ -65,12 +65,12 @@
 }
 
 .feedback.correct {
-  background-color: #4caf50;
+  background-color: #27ae60;
   color: white;
 }
 
 .feedback.incorrect {
-  background-color: #f44336;
+  background-color: #c0392b;
   color: white;
 }
 
@@ -121,7 +121,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #1a237e 0%, #0d1b3d 100%);
   border-radius: 0.5rem;
   color: white;
 }
@@ -138,12 +138,12 @@
 }
 
 .button-secondary {
-  background-color: #f44336;
+  background-color: #2c3e50;
   color: white;
 }
 
 .button-secondary:hover {
-  background-color: #d32f2f;
+  background-color: #1a252f;
 }
 
 /* Game Board */
@@ -192,9 +192,9 @@
 }
 
 .word-button.selected {
-  border-color: #2196f3;
-  background-color: #2196f3;
-  color: white;
+  border-color: #d4a574;
+  background-color: #d4a574;
+  color: #0d1b3d;
   transform: scale(1.05);
 }
 
@@ -256,12 +256,12 @@
 }
 
 .button-primary {
-  background-color: #2196f3;
+  background-color: #d4a574;
   color: white;
 }
 
 .button-primary:hover {
-  background-color: #1976d2;
+  background-color: #c9956e;
   transform: translateY(-2px);
 }
 
