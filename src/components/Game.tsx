@@ -16,11 +16,16 @@ export function Game() {
   const [roundComplete, setRoundComplete] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const [stats, setStats] = useState(storage.getStats());
+  const [masteryLevels, setMasteryLevels] = useState({
+    easy: gameUtils.getMasteryPercentage('easy'),
+    medium: gameUtils.getMasteryPercentage('medium'),
+    hard: gameUtils.getMasteryPercentage('hard'),
+  });
 
   // Generate a new round
   const generateRound = useCallback(() => {
     const selectedWords = gameUtils.selectGameWords();
-    const shuffledSpanish = gameUtils.shuffleArray([...selectedWords]);
+    const shuffledSpanish = [...selectedWords].sort(() => Math.random() - 0.5);
 
     setCurrentRound(selectedWords);
     setSpanishWords(shuffledSpanish);
@@ -69,6 +74,12 @@ export function Game() {
         storage.incrementTotalCorrect(newMatched.size);
         setRoundComplete(true);
         setStats(storage.getStats());
+        // Update mastery levels
+        setMasteryLevels({
+          easy: gameUtils.getMasteryPercentage('easy'),
+          medium: gameUtils.getMasteryPercentage('medium'),
+          hard: gameUtils.getMasteryPercentage('hard'),
+        });
       }
     } else {
       setFeedback({ type: 'incorrect', message: '✗ Try again' });
@@ -88,6 +99,11 @@ export function Game() {
     if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
       storage.resetStats();
       setStats(storage.getStats());
+      setMasteryLevels({
+        easy: gameUtils.getMasteryPercentage('easy'),
+        medium: gameUtils.getMasteryPercentage('medium'),
+        hard: gameUtils.getMasteryPercentage('hard'),
+      });
       generateRound();
     }
   };
@@ -128,6 +144,34 @@ export function Game() {
               <span className="stat-label">Accuracy</span>
               <span className="stat-value">{stats.accuracy}%</span>
             </div>
+
+          <h3>Mastery Levels</h3>
+          <div className="mastery-grid">
+            <div className="mastery-item">
+              <span className="mastery-label">Easy Words</span>
+              <div className="mastery-bar">
+                <div className="mastery-progress" style={{ width: `${masteryLevels.easy}%` }}></div>
+              </div>
+              <span className="mastery-value">{Math.round(masteryLevels.easy)}%</span>
+            </div>
+            <div className="mastery-item">
+              <span className="mastery-label">Medium Words</span>
+              <div className="mastery-bar">
+                <div className="mastery-progress" style={{ width: `${masteryLevels.medium}%` }}></div>
+              </div>
+              <span className="mastery-value">{Math.round(masteryLevels.medium)}%</span>
+              {masteryLevels.easy < 30 && <span className="unlock-hint">Unlock at 30% Easy</span>}
+            </div>
+            <div className="mastery-item">
+              <span className="mastery-label">Hard Words</span>
+              <div className="mastery-bar">
+                <div className="mastery-progress" style={{ width: `${masteryLevels.hard}%` }}></div>
+              </div>
+              <span className="mastery-value">{Math.round(masteryLevels.hard)}%</span>
+              {masteryLevels.medium < 70 && <span className="unlock-hint">Unlock at 70% Medium</span>}
+            </div>
+          </div>
+
             <div className="stat-item">
               <span className="stat-label">Words Learned</span>
               <span className="stat-value">{stats.wordsLearned}</span>
